@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PillarSpawner : MonoBehaviour
 {
+    public GameObject pillarParent;
     public GameObject pillarPrefab;
     public float segmentHeight = 0.5f;
     public Transform player;
@@ -20,6 +21,7 @@ public class PillarSpawner : MonoBehaviour
             Vector3 pos = new Vector3(0, currentHeight, 0);
             GameObject pillar = Instantiate(pillarPrefab, pos, Quaternion.identity, transform);
             pillar.name = $"Pillar_{activePillars.Count}";
+            pillar.transform.parent = pillarParent.transform;
 
             activePillars.Enqueue(pillar);
             currentHeight += segmentHeight;
