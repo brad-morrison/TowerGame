@@ -6623,7 +6623,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1670030961}
-  - component: {fileID: 1670030963}
   - component: {fileID: 1670030962}
   m_Layer: 0
   m_Name: UnityReact
@@ -6657,18 +6656,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e300267bf7d2594cbe58ec6e5d8dd22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1670030963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670030959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83394247e8b3eeb40b561703357e0015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1680064403
