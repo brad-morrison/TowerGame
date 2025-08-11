@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PillarSpawner : MonoBehaviour
 {
-    public GameObject pillarParent;
     public GameObject pillarPrefab;
+    public GameObject pillarParent;
     public float segmentHeight = 0.5f;
     public Transform player;
     public float spawnBuffer = 15f;
