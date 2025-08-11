@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SimpleJump : MonoBehaviour
 {
+    public GameManager gameManager;
     public GameObject gapDetector;
     public AudioClip deathSfx;
     public GameObject tower;
@@ -21,6 +22,8 @@ public class SimpleJump : MonoBehaviour
     
     [Header("SFX")]
     public AudioClip jumpSfx;
+
+    public AudioSource audioSource_Running;
 
     private float verticalVelocity = 0f;
     private bool isJumping = false;
@@ -51,12 +54,15 @@ public class SimpleJump : MonoBehaviour
 
     void HandleInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        
+        
+        if (Input.GetMouseButtonDown(0) && gameManager.gameActive == true)
         {
             if (!isJumping)
             {
                 // First jump from ground
                 StartJump(smallJumpHeight);
+                AudioManager.Instance.PauseSfx(audioSource_Running);
                 hasDoubleJumped = false;
             }
             else if (!hasDoubleJumped)
@@ -64,6 +70,12 @@ public class SimpleJump : MonoBehaviour
                 // Mid-air boost jump
                 BoostJump(boostJumpHeight);
             }
+        }
+        
+        if (Input.GetMouseButtonDown(0) && !gameManager.gameActive)
+        {
+            gameManager.StartGame();
+            AudioManager.Instance.ActivateSoundSource(audioSource_Running);
         }
     }
 
@@ -81,6 +93,7 @@ public class SimpleJump : MonoBehaviour
             isDead = true;
             Debug.Log("DEADDDDDD");
             AudioManager.Instance.PlaySfxWithVolume(deathSfx, 0.3f);
+            AudioManager.Instance.PauseSfx(audioSource_Running);
 
             // Play death SFX
             // AudioManager.Instance.PlaySfx(deathClip);
@@ -99,7 +112,7 @@ public class SimpleJump : MonoBehaviour
             
             
             // fire react game over UI
-            //react.React_GameOverUI(true);
+            react.React_GameOverUI(true, gameManager.coins);
             
             // set tower rotation to 0
             tower.GetComponent<TowerController>().rotationSpeed = 0;
@@ -144,6 +157,7 @@ public class SimpleJump : MonoBehaviour
             if (wasJumpingLastFrame && animator != null)
             {
                 animator.SetTrigger("Land");
+                
             }
             wasJumpingLastFrame = false;
             return;
@@ -164,6 +178,7 @@ public class SimpleJump : MonoBehaviour
             reset.y = jumpStartY;
             transform.position = reset;
             animator.SetBool("isJumping", false);
+            AudioManager.Instance.UnPauseSfx(audioSource_Running);
 
             isJumping = false;
             verticalVelocity = 0f;
@@ -177,7 +192,7 @@ public class SimpleJump : MonoBehaviour
         yield return new WaitForSeconds(delay);
         print("PAUSED");
         Time.timeScale = 0f; // Pause the game
-        react.React_GameOverUI(true);
+        react.React_GameOverUI(true, gameManager.coins);
     }
 }
 

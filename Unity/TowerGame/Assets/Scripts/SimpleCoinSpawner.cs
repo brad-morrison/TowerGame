@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SimpleCoinSpawner : MonoBehaviour
 {
+    public GameManager gameManager;
     [Header("Coin Settings")]
     public GameObject coinPrefab;
     [Range(0f, 1f)] public float spawnChance = 0.3f;
@@ -42,6 +43,7 @@ public class SimpleCoinSpawner : MonoBehaviour
 
         // Parent under the moving tower so coins flow with the track
         Transform parentForCoin = coinParent ? coinParent : transform;
-        Instantiate(coinPrefab, spawnPos, Quaternion.identity, parentForCoin);
+        if (spawnPos.y < gameManager.maxSpawnHeightTarget.transform.position.y)
+            Instantiate(coinPrefab, spawnPos, Quaternion.identity, parentForCoin);
     }
 }

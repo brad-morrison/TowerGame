@@ -4,6 +4,8 @@ using UnityEngine;
 public class SpiralRampBuilder : MonoBehaviour
 {
     public GameObject parent;
+    public GameManager gameManager;
+    public GameObject crystalPrefab;
 
     [Header("Ramp Settings")]
     public GameObject plankPrefab;
@@ -81,12 +83,22 @@ public class SpiralRampBuilder : MonoBehaviour
 
         for (int j = 0; j < runLength; j++)
         {
+            
             Vector3 pos = new Vector3(0, currentHeight, 0);
             Quaternion rot = Quaternion.Euler(0, currentAngle, 0);
 
-            GameObject plank = Instantiate(plankPrefab, pos, rot, parent.transform);
-            plank.name = $"Plank_{activePlanks.Count}";
-            activePlanks.Enqueue(plank);
+            if (currentHeight < gameManager.maxSpawnHeightTarget.transform.position.y)
+            {
+                GameObject plank = Instantiate(plankPrefab, pos, rot, parent.transform);
+                plank.name = $"Plank_{activePlanks.Count}";
+                activePlanks.Enqueue(plank);
+            }
+            else
+            {
+                if (!gameManager.crystalActive)
+                    gameManager.GenerateCrystal(parent.transform.GetChild(parent.transform.childCount - 5));
+            }
+            
 
             // --- Coin over this plank (chance handled by SimpleCoinSpawner) ---
             if (coinSpawner)

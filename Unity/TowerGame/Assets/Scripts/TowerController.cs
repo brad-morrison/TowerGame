@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
+    public GameManager gameManager;
     [Header("Spiral Segment Settings")]
     [Tooltip("Height of a single wedge segment in units")]
     public float segmentHeight = 0.4f;
@@ -17,11 +18,15 @@ public class TowerController : MonoBehaviour
 
     void Update()
     {
-        // Apply rotation
-        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+        if (gameManager.gameActive)
+        {
+            // Apply rotation
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
 
-        // Apply downward scroll to simulate ascent
-        transform.Translate(Vector3.down * scrollSpeed * Time.deltaTime, Space.World);
+            // Apply downward scroll to simulate ascent
+            transform.Translate(Vector3.down * scrollSpeed * Time.deltaTime, Space.World);
+        }
+        
     }
 
     private float GetScrollSpeed()

@@ -2,20 +2,29 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerCoinCollector : MonoBehaviour
+public class PlayerPickupCollector : MonoBehaviour
 {
     [Header("Scoring")]
     public int coinScore = 0;
+    public int crystalCount = 0;
+    public GameManager gameManager;
 
     [Header("Audio")]
-    public AudioClip pickupSfx;
+    public AudioClip coinSfx;
+    public AudioClip crystalSfx;
     [Range(0f, 1f)] public float sfxVolume = 0.8f;
 
-    [Header("Detection (use any)")]
-    public bool useTagCheck = true;
+    [Header("Coin Detection (use any)")]
+    public bool useCoinTagCheck = true;
     public string coinTag = "Coin";
-    public bool useLayerCheck = false;
-    public LayerMask coinLayers; // set in Inspector if using layers
+    public bool useCoinLayerCheck = false;
+    public LayerMask coinLayers;
+
+    [Header("Crystal Detection (use any)")]
+    public bool useCrystalTagCheck = true;
+    public string crystalTag = "Crystal";
+    public bool useCrystalLayerCheck = false;
+    public LayerMask crystalLayers;
 
     [Header("Debug")]
     public bool logContacts = true;
@@ -23,40 +32,70 @@ public class PlayerCoinCollector : MonoBehaviour
     void Reset()
     {
         var rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
+        rb.isKinematic = true;     // typical for trigger pickups
         rb.useGravity = false;
 
-        // Player collider should be non-trigger
+        // Player collider can be non-trigger if pickups are triggers.
+        // If you prefer collisions, make sure the OTHER collider has a non-kinematic rigidbody.
         var col = GetComponent<Collider>();
         col.isTrigger = false;
     }
 
-    void OnTriggerEnter(Collider other)
+    // --- Triggers ---
+    void OnTriggerEnter(Collider other) => HandleContact(other.gameObject);
+
+    // --- Collisions (fallback if your crystal isn't a trigger) ---
+    void OnCollisionEnter(Collision collision) => HandleContact(collision.collider.gameObject);
+
+    void HandleContact(GameObject other)
     {
-        if (logContacts) Debug.Log($"[Player] Trigger with {other.name} (tag='{other.tag}', layer={LayerMask.LayerToName(other.gameObject.layer)})", this);
+        if (logContacts)
+        {
+            Debug.Log($"[Player] Contact with {other.name} (tag='{other.tag}', layer={LayerMask.LayerToName(other.layer)})", this);
+        }
 
-        if (!IsCoin(other)) return;
+        if (IsCoin(other))
+        {
+            coinScore++;
+            if (gameManager) gameManager.coins = coinScore; 
+            if (coinSfx) AudioManager.Instance.PlaySfx(coinSfx);
+            Destroy(other);
+            if (logContacts) Debug.Log($"[Player] Collected COIN. Total coins = {coinScore}", this);
+            return;
+        }
 
-        coinScore++;
-        if (pickupSfx)
-            AudioManager.Instance.PlaySfx(pickupSfx);
-
-
-
-        Destroy(other.gameObject);
-        if (logContacts) Debug.Log($"[Player] Collected coin. Total = {coinScore}", this);
+        if (IsCrystal(other))
+        {
+            crystalCount++;
+            if (gameManager) gameManager.crystals = crystalCount; 
+            if (crystalSfx) AudioManager.Instance.PlaySfx(crystalSfx);
+            Destroy(other);
+            if (logContacts) Debug.Log($"[Player] Collected CRYSTAL. Total crystals = {crystalCount}", this);
+            return;
+        }
     }
 
-    bool IsCoin(Collider other)
+    bool IsCoin(GameObject go)
     {
-        bool tagOk = !useTagCheck || other.CompareTag(coinTag);
-        bool layerOk = !useLayerCheck || ((coinLayers.value & (1 << other.gameObject.layer)) != 0);
-        // If both checks are enabled, require BOTH; if only one enabled, use that; if none enabled, accept anything named with 'coin'.
-        if (useTagCheck && useLayerCheck) return tagOk && layerOk;
-        if (useTagCheck) return tagOk;
-        if (useLayerCheck) return layerOk;
+        bool tagOk = !useCoinTagCheck || go.CompareTag(coinTag);
+        bool layerOk = !useCoinLayerCheck || ((coinLayers.value & (1 << go.layer)) != 0);
 
-        // Fallback: name contains 'coin' (case-insensitive)
-        return other.name.ToLower().Contains("coin");
+        if (useCoinTagCheck && useCoinLayerCheck) return tagOk && layerOk;
+        if (useCoinTagCheck) return tagOk;
+        if (useCoinLayerCheck) return layerOk;
+
+        return go.name.ToLower().Contains("coin");
+    }
+
+    bool IsCrystal(GameObject go)
+    {
+        bool tagOk = !useCrystalTagCheck || go.CompareTag(crystalTag);
+        bool layerOk = !useCrystalLayerCheck || ((crystalLayers.value & (1 << go.layer)) != 0);
+
+        if (useCrystalTagCheck && useCrystalLayerCheck) return tagOk && layerOk;
+        if (useCrystalTagCheck) return tagOk;
+        if (useCrystalLayerCheck) return layerOk;
+
+        return go.name.ToLower().Contains("crystal");
     }
 }

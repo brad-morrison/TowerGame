@@ -3,19 +3,6 @@ using UnityEngine;
 
 public class UnityReact : MonoBehaviour
 {
-    
-    public void GameOverUI(bool show)
-    {
-        if (show)
-        {
-            
-        }
-        else
-        {
-            
-        }
-    }
-
     public void LoadScene(string sceneName)
     {
         if (sceneName == "game")
@@ -30,15 +17,28 @@ public class UnityReact : MonoBehaviour
     }
     
     // call to React
-    public void React_GameOverUI(bool show) {
+    public void React_GameOverUI(bool show, int score) {
         Debug.Log("React_GameOverUI" + show);
         if (show)
         {
-            Application.ExternalCall("GameOver_Show");
+            Application.ExternalCall("GameOver_Show", score);
         }
         else
         {
             Application.ExternalCall("GameOver_Hide");
+        }
+    }
+
+    public void React_GameWonUI(bool show, int score)
+    {
+        Debug.Log("React_GameWonUI" + show);
+        if (show)
+        {
+            Application.ExternalCall("GameWon_Show", score);
+        }
+        else
+        {
+            Application.ExternalCall("GameWon_Hide");
         }
     }
 }
