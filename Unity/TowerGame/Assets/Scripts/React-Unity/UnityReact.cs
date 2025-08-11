@@ -1,19 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Scripting;
 
 public class UnityReact : MonoBehaviour
 {
+    [Preserve]
     public void LoadScene(string sceneName)
     {
-        if (sceneName == "game")
-        {
-            
-        }
-
-        if (sceneName == "menu")
-        {
-            
-        }
+        Debug.Log("Calling LoadScene : " + sceneName);
+        SceneManager.LoadScene(sceneName);
     }
     
     // call to React
