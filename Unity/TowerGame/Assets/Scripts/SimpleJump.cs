@@ -97,6 +97,8 @@ public class SimpleJump : MonoBehaviour
 
             // Play death SFX
             // AudioManager.Instance.PlaySfx(deathClip);
+            
+            
 
             // Trigger death animation
             animator.SetTrigger("death");
@@ -149,6 +151,11 @@ public class SimpleJump : MonoBehaviour
         }
     }
 
+    public void StopRunningSFX()
+    {
+        AudioManager.Instance.StopSfx(audioSource_Running);
+    }
+
     void HandleJump()
     {
         if (!isJumping)
@@ -192,7 +199,7 @@ public class SimpleJump : MonoBehaviour
         yield return new WaitForSeconds(delay);
         print("PAUSED");
         Time.timeScale = 0f; // Pause the game
-        react.React_GameOverUI(true, gameManager.coins);
+        gameManager.GameOver();
     }
 }
 
