@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerCoinCollector : MonoBehaviour
 {
     [Header("Scoring")]
-    public int coinScore = 0;
     public GameManager gameManager;
     public UnityReact react;
 
     [Header("Audio")]
     public AudioClip pickupSfx;
     public AudioClip crystalSfx;
+    public AudioClip tokenSfx;
     [Range(0f, 1f)] public float sfxVolume = 0.8f;
 
     [Header("Crystal (win)")]
@@ -32,9 +32,6 @@ public class PlayerCoinCollector : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (logContacts)
-            Debug.Log($"[Player] Trigger with {other.name}", this);
-
         string lowerName = other.name.ToLower();
 
         // --- CRYSTAL ---
@@ -56,11 +53,27 @@ public class PlayerCoinCollector : MonoBehaviour
         // --- COIN ---
         if (lowerName.Contains("coin"))
         {
-            coinScore++;
+
+            gameManager.coinCount++;
+            gameManager.counterUI.CoinCounterUpdate(gameManager.coinCount);
             if (pickupSfx) AudioManager.Instance.PlaySfx(pickupSfx);
             Destroy(other.gameObject);
+            
+            //gameManager.counterUI.CoinCounterUpdate(coinScore);
+        }
+        
+        // --- TOKEN ---
+        if (lowerName.Contains("token"))
+        {
 
-            if (logContacts) Debug.Log($"[Player] Collected coin. Total = {coinScore}", this);
+            gameManager.tokenCount++;
+            //gameManager.counterUI.CoinCounterUpdate(gameManager.coinCount);
+            // fire notification
+            gameManager.Notification.PopNotification();
+            if (tokenSfx) AudioManager.Instance.PlaySfx(tokenSfx);
+            Destroy(other.gameObject);
+            
+            //gameManager.counterUI.CoinCounterUpdate(coinScore);
         }
     }
 }

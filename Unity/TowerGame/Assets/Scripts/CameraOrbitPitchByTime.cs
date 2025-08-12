@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraOrbitPitchByTime : MonoBehaviour
 {
+    public GameManager gameManager;
     [Header("Targets")]
     public Transform player;
     [Tooltip("If set, yaw will face outward from this center (e.g., tower). Leave null to use a fixed yaw.")]
@@ -93,6 +94,8 @@ public class CameraOrbitPitchByTime : MonoBehaviour
     void LateUpdate()
     {
         if (!player) return;
+
+        if (!gameManager.gameActive) return;
 
         // ---- TIME → 0..1
         float now = Now();

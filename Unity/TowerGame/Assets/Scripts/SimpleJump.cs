@@ -41,9 +41,11 @@ public class SimpleJump : MonoBehaviour
 
     void Update()
     {
+        
         HandleInput();
         HandleJump();
-        HandleDeath();
+        if (gameManager.gameActive)
+            HandleDeath();
         
         if (isDead)
         {
@@ -72,7 +74,7 @@ public class SimpleJump : MonoBehaviour
             }
         }
         
-        if (Input.GetMouseButtonDown(0) && !gameManager.gameActive)
+        if (Input.GetMouseButtonDown(0) && !gameManager.gameActive && !gameManager.uiOpen)
         {
             gameManager.StartGame();
             AudioManager.Instance.ActivateSoundSource(audioSource_Running);
@@ -198,7 +200,6 @@ public class SimpleJump : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         print("PAUSED");
-        Time.timeScale = 0f; // Pause the game
         gameManager.GameOver();
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class CameraPanAroundTower : MonoBehaviour
 {
+    public GameManager gameManager;
     [Header("Target / Pivot")]
     [Tooltip("Center of the pillar/tower. If null, uses world origin.")]
     public Transform towerCenter;
@@ -37,6 +38,8 @@ public class CameraPanAroundTower : MonoBehaviour
     void LateUpdate()
     {
         if (periodSeconds <= 0f) return;
+
+        if (!gameManager.gameActive) return;
 
         // Sine angle with natural ease-in/out
         float t = (Time.time / periodSeconds) * Mathf.PI * 2f;

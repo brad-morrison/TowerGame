@@ -4,18 +4,21 @@ using UnityEngine.Events;
 public class Button : MonoBehaviour
 {
     [Header("Press Settings")]
-    public Vector3 pressedScale = new Vector3(0.9f, 0.9f, 0.9f);
+    [Range(0f, 2f)]
+    public float pressedScaleMultiplier = 0.9f; // 0.9 means 90% of original
     public float scaleSpeed = 10f;
 
     [Header("Events")]
-    public UnityEvent onClick; // Assign your function in Inspector
+    public UnityEvent onClick;
 
     private Vector3 originalScale;
+    private Vector3 pressedScale; 
     private bool isPressed = false;
 
     void Start()
     {
         originalScale = transform.localScale;
+        pressedScale = originalScale * pressedScaleMultiplier; // relative scale
     }
 
     void OnMouseDown()
@@ -27,13 +30,13 @@ public class Button : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (isPressed) // still considered pressed
+        if (isPressed)
         {
             isPressed = false;
             StopAllCoroutines();
             StartCoroutine(ScaleTo(originalScale));
 
-            onClick?.Invoke(); // trigger your function
+            onClick?.Invoke();
         }
     }
 
