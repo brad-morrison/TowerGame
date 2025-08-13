@@ -6,7 +6,8 @@ public class PlayerCoinCollector : MonoBehaviour
 {
     [Header("Refs")]
     public GameManager gameManager;
-    public UnityReact react; // beware: likely calls into JS
+
+    public GameObject coinCounterUI;
 
     [Header("Audio")]
     public AudioClip pickupSfx;
@@ -69,6 +70,7 @@ public class PlayerCoinCollector : MonoBehaviour
             if (gameManager != null)
             {
                 gameManager.coinCount++;
+                coinCounterUI.GetComponent<ScalePop>().Pop();
                 if (gameManager.counterUI != null)
                     gameManager.counterUI.CoinCounterUpdate(gameManager.coinCount);
             }
@@ -115,20 +117,6 @@ public class PlayerCoinCollector : MonoBehaviour
             if (crystal) crystal.SetActive(false);
         }
 
-        // React bridge (guarded + try/catch)
-#if UNITY_WEBGL && !UNITY_EDITOR
-        try
-        {
-            if (react && gameManager != null)
-            {
-                react.React_GameWonUI(true, gameManager.coins);
-            }
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogWarning($"React bridge failed (ignored): {ex}");
-        }
-#endif
 
         // End level (make sure GameWin is idempotent)
         if (gameManager != null)

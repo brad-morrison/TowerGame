@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 1310638636}
+  m_SkyboxMaterial: {fileID: 547386761}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 67023798}
   - component: {fileID: 67023800}
   - component: {fileID: 67023799}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: coins_counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1317,7 +1317,7 @@ GameObject:
   - component: {fileID: 184978189}
   - component: {fileID: 184978191}
   - component: {fileID: 184978190}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1581,7 @@ GameObject:
   - component: {fileID: 212467744}
   - component: {fileID: 212467746}
   - component: {fileID: 212467745}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: label_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1757,7 +1757,7 @@ GameObject:
   - component: {fileID: 214792283}
   - component: {fileID: 214792285}
   - component: {fileID: 214792284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2019,7 +2019,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256868664}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tokens
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2179,7 +2179,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 304793655}
-  m_Layer: 0
+  - component: {fileID: 304793656}
+  m_Layer: 9
   m_Name: UI_CoinCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,16 +2195,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304793654}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21902572, y: -0.039109826, z: 0.20833074, w: 0.9524161}
-  m_LocalPosition: {x: 6.30713, y: 0.7969799, z: -0.5625855}
-  m_LocalScale: {x: 0.5318148, y: 0.5318149, z: 0.5318148}
+  m_LocalRotation: {x: 0.04301411, y: -0.0020726025, z: 0.049394134, w: 0.9978506}
+  m_LocalPosition: {x: 6.6, y: 0, z: -1.33}
+  m_LocalScale: {x: 1.3892066, y: 1.3892068, z: 1.3892066}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 469800722}
   - {fileID: 703610895}
   - {fileID: 4255036722006399530}
   m_Father: {fileID: 202512798}
-  m_LocalEulerAnglesHint: {x: 25.69, y: 1.066, z: 24.92}
+  m_LocalEulerAnglesHint: {x: 4.936, y: 0.006, z: 5.668}
+--- !u!114 &304793656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304793654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0269228c16d8bf946a2813e1e056c727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popPercent: 0.1
+  popTime: 0.12
 --- !u!1 &316903416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,7 +2281,6 @@ GameObject:
   - component: {fileID: 330585546}
   - component: {fileID: 330585545}
   - component: {fileID: 330585547}
-  - component: {fileID: 330585548}
   - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
@@ -2314,7 +2328,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 511
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2340,6 +2354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 202512798}
+  - {fileID: 1593520663}
   m_Father: {fileID: 814635240}
   m_LocalEulerAnglesHint: {x: 19.831, y: 0, z: 0}
 --- !u!114 &330585547
@@ -2358,7 +2373,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 1593520665}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -2386,21 +2402,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &330585548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db47d3cfcc0f7884998f2276a8d995fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2124489349}
-  offset: {x: 0, y: 3, z: -10}
-  followSpeed: 2
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2556,7 +2557,7 @@ GameObject:
   - component: {fileID: 365121512}
   - component: {fileID: 365121514}
   - component: {fileID: 365121513}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: token_BOS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2727,7 +2728,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 392300856}
-  m_Layer: 0
+  - component: {fileID: 392300857}
+  m_Layer: 9
   m_Name: UI_Complete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2742,9 +2744,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392300855}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.526, y: 1.8513, z: -0.3721}
-  m_LocalScale: {x: 0.6378988, y: 0.6378988, z: 0.6378988}
+  m_LocalRotation: {x: 0.10403149, y: 0.015565004, z: 0.0987411, w: 0.98953795}
+  m_LocalPosition: {x: 6.3728466, y: 2.5314617, z: -0.20016134}
+  m_LocalScale: {x: 1.5310209, y: 1.5310209, z: 1.5310209}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1681516177}
@@ -2757,7 +2759,23 @@ Transform:
   - {fileID: 3036164762354755555}
   - {fileID: 256868664}
   m_Father: {fileID: 202512798}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 11.701, y: 3.006, z: 11.705}
+--- !u!114 &392300857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392300855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08104977ab5b4149b587c89b516e40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatAmplitude: 0.06
+  floatFrequency: 0.1
+  rotationAmplitude: 0.68
+  rotationFrequency: 2.02
 --- !u!4 &395772076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 449736, guid: 89ece42cbeee51544aacc46371afce2a, type: 3}
@@ -3275,7 +3293,7 @@ GameObject:
   - component: {fileID: 469800725}
   - component: {fileID: 469800724}
   - component: {fileID: 469800723}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3290,13 +3308,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469800721}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0046526217, y: 0.3826551, z: -0.011232408, w: 0.9238113}
-  m_LocalPosition: {x: -0.038999975, y: 0.068, z: 0.03500002}
+  m_LocalRotation: {x: 0.03068455, y: 0.3814513, z: 0.07407899, w: 0.9209048}
+  m_LocalPosition: {x: -0.038999997, y: 0.06800009, z: 0.03500006}
   m_LocalScale: {x: 0.12366315, y: 0.18069953, z: 0.46541}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 304793655}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: -1.393}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 9.198}
 --- !u!65 &469800723
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3827,6 +3845,321 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 446362, guid: ad49c548c939c434e8c7700f06099bdd, type: 3}
   m_PrefabInstance: {fileID: 387986501}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &547386761
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sky 02
+  m_Shader: {fileID: 4800000, guid: 6fc9318f5193c094c98c0d450cd61e3b, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _BACKGROUNDMODE_COLORS
+  - _ENABLECLOUDSROTATION_ON
+  - _ENABLECLOUDS_ON
+  - _ENABLEPATTERNOVERLAY_ON
+  - _ENABLESUN_ON
+  m_InvalidKeywords:
+  - _DISABLEDIRECTIONLIGHT_ON
+  - _ENABLEDIRECTIONLIGHT_ON
+  - _ENABLESUNMOONMASK_ON
+  - _ENABLESUNMOON_ON
+  - _USECUBEMAP_ON
+  - _USEENVIRONMENTGRADIENT_ON
+  - _USETEXTURE_ON
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BackgroundCubemap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CloudsColormap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CloudsCubemap:
+        m_Texture: {fileID: 8900000, guid: ee7bf433ad404fe4cb5e19b8a93b3bed, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cubemap:
+        m_Texture: {fileID: 8900000, guid: ae71550a4c81f73409f14f4d6eca2c0f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CubemapBG:
+        m_Texture: {fileID: 8900000, guid: b8d891a789549494aaa157c0edc53a12, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MoonTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PatternCubemap:
+        m_Texture: {fileID: 8900000, guid: 3845b30ba2fbdee44a85e5ead4dd2974, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PatternOverlay:
+        m_Texture: {fileID: 8900000, guid: 1f3407b97870a2e46864ac55deec53b0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SkyPatternOverlay:
+        m_Texture: {fileID: 8900000, guid: b8d891a789549494aaa157c0edc53a12, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Spherical:
+        m_Texture: {fileID: 2800000, guid: 61c0b9c0523734e0e91bc6043c72a490, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _StarsCubemap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Sun:
+        m_Texture: {fileID: 2800000, guid: 19982f8bf5fa2ed42b65ac271d4f0279, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SunTexture:
+        m_Texture: {fileID: 2800000, guid: dd566660fc358aa4098080e42ca0db56, type: 3}
+        m_Scale: {x: 0, y: 0}
+        m_Offset: {x: 1, y: 1}
+    - _Tex:
+        m_Texture: {fileID: 2800000, guid: 623f215c9cf5dc04aa628d4dd7b6bd73, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture:
+        m_Texture: {fileID: 2800000, guid: 12726e6bff222df4cbbe3ebde547c297, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 84508b93f15f2b64386ec07486afc7a3, type: 3}
+        m_Scale: {x: 4.46, y: 5.19}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 84508b93f15f2b64386ec07486afc7a3, type: 3}
+        m_Scale: {x: 1.46, y: -1.61}
+        m_Offset: {x: 1.05, y: 3.12}
+    - _TextureSample2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopTexture0:
+        m_Texture: {fileID: 2800000, guid: 84508b93f15f2b64386ec07486afc7a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TwinklingTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _scaledTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex:
+        m_Texture: {fileID: 2800000, guid: 12726e6bff222df4cbbe3ebde547c297, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texture:
+        m_Texture: {fileID: 2800000, guid: 64e7766099ad46747a07014e44d0aea1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BackgroundCat: 1
+    - _BackgroundExposure: 1
+    - _BackgroundMode: 0
+    - _Banner: 1
+    - _BumpScale: 1
+    - _CloudHeight: 0
+    - _CloudsAlpha: 0
+    - _CloudsCat: 1
+    - _CloudsHeight: 0.1
+    - _CloudsIntensity: 1
+    - _CloudsLitbySun: 0
+    - _CloudsRotation: 0
+    - _CloudsRotationSpeed: 1
+    - _Contrast: 0.477
+    - _Contrsat: 1
+    - _Cutoff: 0
+    - _DetailNormalMapScale: 1
+    - _DisableCloudsRotation: 0
+    - _DisableDirectionLight: 1
+    - _DisableRotation: 0
+    - _DstBlend: 0
+    - _Enable1Twinkling: 0
+    - _EnableBuiltinFog: 0
+    - _EnableClouds: 1
+    - _EnableCloudsColormap: 0
+    - _EnableCloudsRotation: 1
+    - _EnableDirectionLight: 1
+    - _EnableFogMessage: 0
+    - _EnableMoon: 0
+    - _EnablePatternOverlay: 1
+    - _EnableSkyPatternOverlay: 0
+    - _EnableStars: 0
+    - _EnableStarsRotation: 0
+    - _EnableStarsTwinkling: 0
+    - _EnableSun: 1
+    - _EnableSunMask: 0
+    - _EnableSunMoon: 1
+    - _EnableSunMoonMask: 1
+    - _EnableTwinkling: 0
+    - _EqHeight: 0.419
+    - _EquatorHeight: 0.85
+    - _EquatorSmoothness: 0.4
+    - _Exposure: 0
+    - _Fade: 0.463
+    - _Float0: 2.7
+    - _Float1: 0
+    - _Float2: 0
+    - _Float3: 8.91
+    - _Float4: -1
+    - _Float5: -0.2
+    - _Float6: 1
+    - _FogCat: 1
+    - _FogFill: 0
+    - _FogHeight: 0
+    - _FogIntensity: 0
+    - _FogSmoothness: 0.01
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Keyword0: 0
+    - _Metallic: 0
+    - _Mode: 0
+    - _MoonCat: 1
+    - _MoonDirectionMode: 0
+    - _MoonIntensity: 1
+    - _MoonSize: 0.5
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _PatternCat: 1
+    - _PatternContrast: 0.2
+    - _RoatationSpeed: 0.4
+    - _Rotation: 0
+    - _RotationSpeed: 0.5
+    - _SkyPatternContrast: 0.477
+    - _SkyPatternOverlay: 0
+    - _SkyboxCat: 1
+    - _SkyboxOffset: 0
+    - _SkyboxRotation: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _StarsAmount: 3
+    - _StarsBottomMask: 1
+    - _StarsCat: 1
+    - _StarsHeightMask: 0
+    - _StarsIntensity: 0
+    - _StarsLayer: 1
+    - _StarsRotation: 360
+    - _StarsRotationSpeed: 0.5
+    - _StarsSize: 0
+    - _StarsSunMask: 0
+    - _SunCat: 1
+    - _SunDirectionMode: 0
+    - _SunIntensity: 2
+    - _SunRadiusB: 0
+    - _SunRadoisA: 0.463
+    - _SunSize: 0.8
+    - _ToggleSwitch0: 0
+    - _TwinklingContrast: 0
+    - _TwinklingSpeed: 0
+    - _UVSec: 0
+    - _UseCUBEMAP: 1
+    - _UseEnvironmentGradient: 1
+    - _UseSkyPatternOverlay: 0
+    - _UseTexture: 1
+    - _WaveScale: 0
+    - _WaveSpeed: 0
+    - _ZWrite: 1
+    - __dirty: 0
+    - _adf: 0
+    - _angle: 145
+    - _fresnell: 0
+    - _mip: 0
+    m_Colors:
+    - _CloudLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CloudShadowColor: {r: 0.33239606, g: 0.46899295, b: 0.85294116, a: 1}
+    - _CloudsLightColor: {r: 0.9338235, g: 0.9338235, b: 0.9338235, a: 1}
+    - _CloudsRotationAxis: {r: 0, g: 1, b: 0, a: 0}
+    - _CloudsShadowColor: {r: 0.4625865, g: 0.49787903, b: 0.9117647, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color0: {r: 0, g: 0.5054344, b: 1, a: 0}
+    - _Color1: {r: 1, g: 1, b: 1, a: 0}
+    - _Color2: {r: 0.059472326, g: 0.25068596, b: 0.8088235, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Eq: {r: 1, g: 0.6769777, b: 0.330882, a: 0}
+    - _EquatorColor: {r: 1, g: 0.88965523, b: 0, a: 0}
+    - _Ground: {r: 0.4779411, g: 0.43111518, b: 0.23545504, a: 0}
+    - _GroundColor: {r: 0.29411763, g: 0.6787019, b: 1, a: 0}
+    - _MoonColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MoonDirection: {r: 1, g: 0, b: 0, a: 0}
+    - _Sky: {r: 0.6691177, g: 0.29519898, b: 0.29519898, a: 0}
+    - _SkyColor: {r: 0, g: 0.322, b: 1, a: 0}
+    - _SkyboxRotationAxis: {r: 0, g: 1, b: 0, a: 0}
+    - _Skycol: {r: 0.27941146, g: 0.64219046, b: 1, a: 0}
+    - _StarsRotationAxis: {r: 0, g: 1, b: 0, a: 0}
+    - _SunColor: {r: 1, g: 0.85071, b: 0.66176474, a: 1}
+    - _SunDirection: {r: 0, g: 0, b: 1, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 0}
+    - _Vector1: {r: 0, g: 1, b: 0, a: 0}
+    - _water: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &551224423
 GameObject:
   m_ObjectHideFlags: 0
@@ -3903,7 +4236,7 @@ GameObject:
   - component: {fileID: 555150826}
   - component: {fileID: 555150828}
   - component: {fileID: 555150827}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4547,7 +4880,7 @@ GameObject:
   - component: {fileID: 626568845}
   - component: {fileID: 626568844}
   - component: {fileID: 626568843}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4938,7 +5271,7 @@ GameObject:
   - component: {fileID: 662931850}
   - component: {fileID: 662931852}
   - component: {fileID: 662931851}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: button_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5379,7 +5712,7 @@ GameObject:
   - component: {fileID: 703610895}
   - component: {fileID: 703610897}
   - component: {fileID: 703610896}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5884,7 +6217,7 @@ GameObject:
   - component: {fileID: 771411625}
   - component: {fileID: 771411627}
   - component: {fileID: 771411626}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: button_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6058,7 +6391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 773714110}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tokens (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6527,7 +6860,7 @@ GameObject:
   - component: {fileID: 846813333}
   - component: {fileID: 846813335}
   - component: {fileID: 846813334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: coins_counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7002,7 +7335,7 @@ MonoBehaviour:
   gameManager: {fileID: 551224425}
   pillarPrefab: {fileID: 2910116302127850108, guid: 3391631be226c5a45892bbfa053ee1e3, type: 3}
   pillarParent: {fileID: 442923574}
-  segmentHeight: 0.8
+  segmentHeight: 0.9
   player: {fileID: 2098439334}
   spawnBuffer: 30
   despawnBuffer: 10
@@ -7044,7 +7377,7 @@ GameObject:
   - component: {fileID: 908616438}
   - component: {fileID: 908616440}
   - component: {fileID: 908616439}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7646,7 +7979,7 @@ GameObject:
   - component: {fileID: 971546968}
   - component: {fileID: 971546970}
   - component: {fileID: 971546969}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: token_BOS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7802,7 +8135,7 @@ Transform:
   m_GameObject: {fileID: 973880427}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.48, y: 14.99, z: -25.28}
+  m_LocalPosition: {x: 4.48, y: 20.02, z: -25.28}
   m_LocalScale: {x: 1, y: 0.047234, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7819,7 +8152,7 @@ GameObject:
   - component: {fileID: 983721833}
   - component: {fileID: 983721835}
   - component: {fileID: 983721834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8080,7 +8413,7 @@ GameObject:
   - component: {fileID: 995151703}
   - component: {fileID: 995151705}
   - component: {fileID: 995151704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tokens_counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8255,7 +8588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1011401403}
   - component: {fileID: 1011401404}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: UI_Notification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8271,8 +8604,8 @@ Transform:
   m_GameObject: {fileID: 1011401402}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.5332, y: 2.2936, z: -0.3784}
-  m_LocalScale: {x: 0.83206, y: 0.83206, z: 0.83206}
+  m_LocalPosition: {x: 6.58, y: 3.29, z: -0.42}
+  m_LocalScale: {x: 2.0087593, y: 2.0087593, z: 2.0087593}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1214799594}
@@ -8297,7 +8630,7 @@ MonoBehaviour:
   - {fileID: 971546967}
   - {fileID: 1327237304}
   - {fileID: 1614647071}
-  popDownDistance: 0.3
+  popDownDistance: 0.6
   moveDuration: 0.2
   visibleTime: 2
 --- !u!4 &1012162018 stripped
@@ -8316,6 +8649,10 @@ PrefabInstance:
     - target: {fileID: 33391112449123075, guid: 27d4a31f9389243ef8e1b747fa002abe, type: 3}
       propertyPath: m_Name
       value: SW Token 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 33391112449123075, guid: 27d4a31f9389243ef8e1b747fa002abe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 33391112449123075, guid: 27d4a31f9389243ef8e1b747fa002abe, type: 3}
       propertyPath: m_IsActive
@@ -8413,7 +8750,7 @@ GameObject:
   - component: {fileID: 1076678363}
   - component: {fileID: 1076678365}
   - component: {fileID: 1076678364}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tokens_counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8676,7 +9013,7 @@ GameObject:
   - component: {fileID: 1080769166}
   - component: {fileID: 1080769165}
   - component: {fileID: 1080769168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8691,14 +9028,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080769163}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.018412825, y: 0.3822402, z: 0.044452496, w: 0.92280954}
-  m_LocalPosition: {x: -0.092448, y: -0.992, z: -0.14545}
+  m_LocalRotation: {x: 0.052857623, y: 0.37901527, z: 0.12760955, w: 0.9150242}
+  m_LocalPosition: {x: -0.09244792, y: -0.99200004, z: -0.1454503}
   m_LocalScale: {x: 0.09438132, y: 0.12976894, z: 0.296907}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 662931850}
   m_Father: {fileID: 1996086773}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 5.516}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 15.879}
 --- !u!65 &1080769165
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9575,7 +9912,7 @@ GameObject:
   - component: {fileID: 1195308065}
   - component: {fileID: 1195308064}
   - component: {fileID: 1195308063}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: banner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9590,14 +9927,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195308061}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.028696412, y: 0.38116917, z: 0.072968006, w: 0.92117447}
-  m_LocalPosition: {x: -0.044, y: -0.024, z: 0.04}
+  m_LocalRotation: {x: 0.05204437, y: 0.37868828, z: 0.12938634, w: 0.9149567}
+  m_LocalPosition: {x: -0.043999974, y: -0.02399994, z: 0.039999783}
   m_LocalScale: {x: 0.10720161, y: 0.14965524, z: 0.5004718}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 555150826}
   m_Father: {fileID: 1996086773}
-  m_LocalEulerAnglesHint: {x: -0.158, y: 44.946, z: 8.993}
+  m_LocalEulerAnglesHint: {x: -0.158, y: 44.946, z: 16.033}
 --- !u!65 &1195308063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9827,7 +10164,7 @@ GameObject:
   - component: {fileID: 1214799597}
   - component: {fileID: 1214799596}
   - component: {fileID: 1214799595}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10280,7 +10617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1301825022}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tokens
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10317,7 +10654,7 @@ GameObject:
   - component: {fileID: 1306289434}
   - component: {fileID: 1306289433}
   - component: {fileID: 1306289432}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: banner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10414,321 +10751,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306289430}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!21 &1310638636
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sky 02
-  m_Shader: {fileID: 4800000, guid: 6fc9318f5193c094c98c0d450cd61e3b, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _BACKGROUNDMODE_COLORS
-  - _ENABLECLOUDSROTATION_ON
-  - _ENABLECLOUDS_ON
-  - _ENABLEPATTERNOVERLAY_ON
-  - _ENABLESUN_ON
-  m_InvalidKeywords:
-  - _DISABLEDIRECTIONLIGHT_ON
-  - _ENABLEDIRECTIONLIGHT_ON
-  - _ENABLESUNMOONMASK_ON
-  - _ENABLESUNMOON_ON
-  - _USECUBEMAP_ON
-  - _USEENVIRONMENTGRADIENT_ON
-  - _USETEXTURE_ON
-  m_LightmapFlags: 0
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BackgroundCubemap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CloudsColormap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CloudsCubemap:
-        m_Texture: {fileID: 8900000, guid: ee7bf433ad404fe4cb5e19b8a93b3bed, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Cubemap:
-        m_Texture: {fileID: 8900000, guid: ae71550a4c81f73409f14f4d6eca2c0f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CubemapBG:
-        m_Texture: {fileID: 8900000, guid: b8d891a789549494aaa157c0edc53a12, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MoonTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Normal:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _PatternCubemap:
-        m_Texture: {fileID: 8900000, guid: 3845b30ba2fbdee44a85e5ead4dd2974, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _PatternOverlay:
-        m_Texture: {fileID: 8900000, guid: 1f3407b97870a2e46864ac55deec53b0, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SkyPatternOverlay:
-        m_Texture: {fileID: 8900000, guid: b8d891a789549494aaa157c0edc53a12, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Spherical:
-        m_Texture: {fileID: 2800000, guid: 61c0b9c0523734e0e91bc6043c72a490, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _StarsCubemap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Sun:
-        m_Texture: {fileID: 2800000, guid: 19982f8bf5fa2ed42b65ac271d4f0279, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SunTexture:
-        m_Texture: {fileID: 2800000, guid: dd566660fc358aa4098080e42ca0db56, type: 3}
-        m_Scale: {x: 0, y: 0}
-        m_Offset: {x: 1, y: 1}
-    - _Tex:
-        m_Texture: {fileID: 2800000, guid: 623f215c9cf5dc04aa628d4dd7b6bd73, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture:
-        m_Texture: {fileID: 2800000, guid: 12726e6bff222df4cbbe3ebde547c297, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 84508b93f15f2b64386ec07486afc7a3, type: 3}
-        m_Scale: {x: 4.46, y: 5.19}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample1:
-        m_Texture: {fileID: 2800000, guid: 84508b93f15f2b64386ec07486afc7a3, type: 3}
-        m_Scale: {x: 1.46, y: -1.61}
-        m_Offset: {x: 1.05, y: 3.12}
-    - _TextureSample2:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TopTexture0:
-        m_Texture: {fileID: 2800000, guid: 84508b93f15f2b64386ec07486afc7a3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TwinklingTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _scaledTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _tex:
-        m_Texture: {fileID: 2800000, guid: 12726e6bff222df4cbbe3ebde547c297, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texcoord:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texture:
-        m_Texture: {fileID: 2800000, guid: 64e7766099ad46747a07014e44d0aea1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BackgroundCat: 1
-    - _BackgroundExposure: 1
-    - _BackgroundMode: 0
-    - _Banner: 1
-    - _BumpScale: 1
-    - _CloudHeight: 0
-    - _CloudsAlpha: 0
-    - _CloudsCat: 1
-    - _CloudsHeight: 0.1
-    - _CloudsIntensity: 1
-    - _CloudsLitbySun: 0
-    - _CloudsRotation: 0
-    - _CloudsRotationSpeed: 1
-    - _Contrast: 0.477
-    - _Contrsat: 1
-    - _Cutoff: 0
-    - _DetailNormalMapScale: 1
-    - _DisableCloudsRotation: 0
-    - _DisableDirectionLight: 1
-    - _DisableRotation: 0
-    - _DstBlend: 0
-    - _Enable1Twinkling: 0
-    - _EnableBuiltinFog: 0
-    - _EnableClouds: 1
-    - _EnableCloudsColormap: 0
-    - _EnableCloudsRotation: 1
-    - _EnableDirectionLight: 1
-    - _EnableFogMessage: 0
-    - _EnableMoon: 0
-    - _EnablePatternOverlay: 1
-    - _EnableSkyPatternOverlay: 0
-    - _EnableStars: 0
-    - _EnableStarsRotation: 0
-    - _EnableStarsTwinkling: 0
-    - _EnableSun: 1
-    - _EnableSunMask: 0
-    - _EnableSunMoon: 1
-    - _EnableSunMoonMask: 1
-    - _EnableTwinkling: 0
-    - _EqHeight: 0.419
-    - _EquatorHeight: 0.85
-    - _EquatorSmoothness: 0.4
-    - _Exposure: 0
-    - _Fade: 0.463
-    - _Float0: 2.7
-    - _Float1: 0
-    - _Float2: 0
-    - _Float3: 8.91
-    - _Float4: -1
-    - _Float5: -0.2
-    - _Float6: 1
-    - _FogCat: 1
-    - _FogFill: 0
-    - _FogHeight: 0
-    - _FogIntensity: 0
-    - _FogSmoothness: 0.01
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Keyword0: 0
-    - _Metallic: 0
-    - _Mode: 0
-    - _MoonCat: 1
-    - _MoonDirectionMode: 0
-    - _MoonIntensity: 1
-    - _MoonSize: 0.5
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _PatternCat: 1
-    - _PatternContrast: 0.2
-    - _RoatationSpeed: 0.4
-    - _Rotation: 0
-    - _RotationSpeed: 0.5
-    - _SkyPatternContrast: 0.477
-    - _SkyPatternOverlay: 0
-    - _SkyboxCat: 1
-    - _SkyboxOffset: 0
-    - _SkyboxRotation: 0
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _StarsAmount: 3
-    - _StarsBottomMask: 1
-    - _StarsCat: 1
-    - _StarsHeightMask: 0
-    - _StarsIntensity: 0
-    - _StarsLayer: 1
-    - _StarsRotation: 360
-    - _StarsRotationSpeed: 0.5
-    - _StarsSize: 0
-    - _StarsSunMask: 0
-    - _SunCat: 1
-    - _SunDirectionMode: 0
-    - _SunIntensity: 2
-    - _SunRadiusB: 0
-    - _SunRadoisA: 0.463
-    - _SunSize: 0.8
-    - _ToggleSwitch0: 0
-    - _TwinklingContrast: 0
-    - _TwinklingSpeed: 0
-    - _UVSec: 0
-    - _UseCUBEMAP: 1
-    - _UseEnvironmentGradient: 1
-    - _UseSkyPatternOverlay: 0
-    - _UseTexture: 1
-    - _WaveScale: 0
-    - _WaveSpeed: 0
-    - _ZWrite: 1
-    - __dirty: 0
-    - _adf: 0
-    - _angle: 145
-    - _fresnell: 0
-    - _mip: 0
-    m_Colors:
-    - _CloudLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudShadowColor: {r: 0.33239606, g: 0.46899295, b: 0.85294116, a: 1}
-    - _CloudsLightColor: {r: 0.9338235, g: 0.9338235, b: 0.9338235, a: 1}
-    - _CloudsRotationAxis: {r: 0, g: 1, b: 0, a: 0}
-    - _CloudsShadowColor: {r: 0.4625865, g: 0.49787903, b: 0.9117647, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 0, g: 0.5054344, b: 1, a: 0}
-    - _Color1: {r: 1, g: 1, b: 1, a: 0}
-    - _Color2: {r: 0.059472326, g: 0.25068596, b: 0.8088235, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Eq: {r: 1, g: 0.6769777, b: 0.330882, a: 0}
-    - _EquatorColor: {r: 1, g: 0.88965523, b: 0, a: 0}
-    - _Ground: {r: 0.4779411, g: 0.43111518, b: 0.23545504, a: 0}
-    - _GroundColor: {r: 0.29411763, g: 0.6787019, b: 1, a: 0}
-    - _MoonColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonDirection: {r: 1, g: 0, b: 0, a: 0}
-    - _Sky: {r: 0.6691177, g: 0.29519898, b: 0.29519898, a: 0}
-    - _SkyColor: {r: 0, g: 0.322, b: 1, a: 0}
-    - _SkyboxRotationAxis: {r: 0, g: 1, b: 0, a: 0}
-    - _Skycol: {r: 0.27941146, g: 0.64219046, b: 1, a: 0}
-    - _StarsRotationAxis: {r: 0, g: 1, b: 0, a: 0}
-    - _SunColor: {r: 1, g: 0.85071, b: 0.66176474, a: 1}
-    - _SunDirection: {r: 0, g: 0, b: 1, a: 0}
-    - _Tint: {r: 1, g: 1, b: 1, a: 0}
-    - _Vector1: {r: 0, g: 1, b: 0, a: 0}
-    - _water: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!4 &1318299928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 410432, guid: febadf3b0ed1d014bb1b9dcd8b633299, type: 3}
@@ -10745,7 +10767,7 @@ GameObject:
   - component: {fileID: 1327237305}
   - component: {fileID: 1327237307}
   - component: {fileID: 1327237306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lloyds Token (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10849,7 +10871,7 @@ GameObject:
   - component: {fileID: 1360460552}
   - component: {fileID: 1360460551}
   - component: {fileID: 1360460554}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: button (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10864,14 +10886,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360460549}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.018412825, y: 0.3822402, z: 0.044452496, w: 0.92280954}
-  m_LocalPosition: {x: 0.13945, y: -0.992, z: 0.086448}
+  m_LocalRotation: {x: 0.052857623, y: 0.37901527, z: 0.12760955, w: 0.9150242}
+  m_LocalPosition: {x: 0.13945052, y: -0.9920022, z: 0.08644832}
   m_LocalScale: {x: 0.09438132, y: 0.12976894, z: 0.296907}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1812046765}
   m_Father: {fileID: 1996086773}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 5.516}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 15.879}
 --- !u!65 &1360460551
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11129,7 +11151,7 @@ GameObject:
   - component: {fileID: 1419553723}
   - component: {fileID: 1419553725}
   - component: {fileID: 1419553724}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11486,7 +11508,7 @@ GameObject:
   - component: {fileID: 1430232702}
   - component: {fileID: 1430232701}
   - component: {fileID: 1430232704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11501,14 +11523,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430232699}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.018412825, y: 0.3822402, z: 0.044452496, w: 0.92280954}
-  m_LocalPosition: {x: 0.024, y: -1.131, z: -0.029}
+  m_LocalRotation: {x: 0.045194257, y: 0.38000524, z: 0.10910858, w: 0.91741425}
+  m_LocalPosition: {x: 0.024000062, y: -1.1310002, z: -0.02899999}
   m_LocalScale: {x: 0.09779974, y: 0.13446908, z: 0.30766076}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 771411625}
   m_Father: {fileID: 392300856}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 5.516}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 13.565}
 --- !u!65 &1430232701
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12285,6 +12307,134 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a521154430ac7b4f84ecd2939a3f482, type: 3}
+--- !u!1 &1593520662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1593520663}
+  - component: {fileID: 1593520665}
+  - component: {fileID: 1593520664}
+  m_Layer: 9
+  m_Name: DOFCAM
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1593520663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593520662}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000055879354, y: 0.000000029802322, z: 0.0000000018626451, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 330585546}
+  m_LocalEulerAnglesHint: {x: -0.37, y: -47.753, z: 6.034}
+--- !u!114 &1593520664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593520662}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 1
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 0
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+--- !u!20 &1593520665
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593520662}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 4
+  m_BackGroundColor: {r: 0.6773585, g: 0.9086025, b: 1, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 25.158525
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.58
+  far clip plane: 1000
+  field of view: 51
+  orthographic: 1
+  orthographic size: 1.65
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 512
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1001 &1611208598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12353,6 +12503,10 @@ PrefabInstance:
     - target: {fileID: 33391112449123075, guid: 27d4a31f9389243ef8e1b747fa002abe, type: 3}
       propertyPath: m_Name
       value: SW Token 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 33391112449123075, guid: 27d4a31f9389243ef8e1b747fa002abe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 33391112449123075, guid: 27d4a31f9389243ef8e1b747fa002abe, type: 3}
       propertyPath: m_IsActive
@@ -12665,7 +12819,7 @@ GameObject:
   - component: {fileID: 1681516180}
   - component: {fileID: 1681516179}
   - component: {fileID: 1681516178}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13595,7 +13749,7 @@ GameObject:
   - component: {fileID: 1812046765}
   - component: {fileID: 1812046767}
   - component: {fileID: 1812046766}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: button_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14430,7 +14584,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1996086773}
-  m_Layer: 0
+  - component: {fileID: 1996086774}
+  m_Layer: 9
   m_Name: UI_Fail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14445,9 +14600,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996086772}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.526, y: 1.8513, z: -0.3721}
-  m_LocalScale: {x: 0.6378988, y: 0.6378988, z: 0.6378988}
+  m_LocalRotation: {x: 0.08169852, y: 0.010933277, z: 0.0760461, w: 0.9936915}
+  m_LocalPosition: {x: 6.382, y: 2.701, z: -0.211}
+  m_LocalScale: {x: 1.7384657, y: 1.7384657, z: 1.7384657}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2085282483}
@@ -14460,7 +14615,23 @@ Transform:
   - {fileID: 626568842}
   - {fileID: 1301825022}
   m_Father: {fileID: 202512798}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.248, y: 1.983, z: 8.913}
+--- !u!114 &1996086774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996086772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08104977ab5b4149b587c89b516e40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatAmplitude: 0.06
+  floatFrequency: 0.1
+  rotationAmplitude: 0.68
+  rotationFrequency: 2.02
 --- !u!1 &2027091552
 GameObject:
   m_ObjectHideFlags: 0
@@ -14527,7 +14698,8 @@ GameObject:
   - component: {fileID: 2038229739}
   - component: {fileID: 2038229738}
   - component: {fileID: 2038229737}
-  m_Layer: 0
+  - component: {fileID: 2038229741}
+  m_Layer: 9
   m_Name: help
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14617,13 +14789,29 @@ Transform:
   m_GameObject: {fileID: 2038229736}
   serializedVersion: 2
   m_LocalRotation: {x: 0.028696403, y: 0.3811692, z: 0.07296801, w: 0.92117435}
-  m_LocalPosition: {x: 0.20300817, y: -0.042589784, z: -0.96052074}
-  m_LocalScale: {x: 0.06838378, y: 0.09546491, z: 0.31925035}
+  m_LocalPosition: {x: 0.038, y: 0.358, z: -0.765}
+  m_LocalScale: {x: 0.13608372, y: 0.18997517, z: 0.6353082}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1419553723}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -0.158, y: 44.946, z: 8.993}
+--- !u!114 &2038229741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038229736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08104977ab5b4149b587c89b516e40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatAmplitude: 0.06
+  floatFrequency: 0.1
+  rotationAmplitude: 0.68
+  rotationFrequency: 2.02
 --- !u!1001 &2040214716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15002,7 +15190,7 @@ GameObject:
   - component: {fileID: 2085282486}
   - component: {fileID: 2085282485}
   - component: {fileID: 2085282484}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15275,7 +15463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 551224425}
-  react: {fileID: 0}
+  coinCounterUI: {fileID: 304793654}
   pickupSfx: {fileID: 8300000, guid: 20fe5e1f7102ebd428ac7e02b29f94c1, type: 3}
   crystalSfx: {fileID: 8300000, guid: be680e6b8b43f49e6bb507a2eab70f1b, type: 3}
   tokenSfx: {fileID: 8300000, guid: bd28f64eb7b674f9885c4273bf8ee392, type: 3}
@@ -15459,6 +15647,10 @@ PrefabInstance:
     - target: {fileID: 33391112449123075, guid: 27d4a31f9389243ef8e1b747fa002abe, type: 3}
       propertyPath: m_Name
       value: SW Token 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 33391112449123075, guid: 27d4a31f9389243ef8e1b747fa002abe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 33391112449123075, guid: 27d4a31f9389243ef8e1b747fa002abe, type: 3}
       propertyPath: m_IsActive
@@ -15719,7 +15911,7 @@ GameObject:
   - component: {fileID: 543450653150315219}
   - component: {fileID: 3469287836999847286}
   - component: {fileID: 1711813856158120380}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lloyds Token
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15737,7 +15929,7 @@ GameObject:
   - component: {fileID: 543450653003219342}
   - component: {fileID: 3469287836853276203}
   - component: {fileID: 1711813856280050401}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lloyds Token
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15755,7 +15947,7 @@ GameObject:
   - component: {fileID: 543450653528947852}
   - component: {fileID: 3469287837378343721}
   - component: {fileID: 1711813855733352419}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: token_BOS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15917,7 +16109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4255036722006399530}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: CoinParent-SceneReady
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15944,7 +16136,7 @@ GameObject:
   - component: {fileID: 2129433337620179014}
   - component: {fileID: 4209092274487385228}
   - component: {fileID: 8627952612733228662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16137,7 +16329,7 @@ GameObject:
   - component: {fileID: 5558273244783695284}
   - component: {fileID: 8830766690102729233}
   - component: {fileID: 6731149495276154587}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16153,7 +16345,7 @@ Transform:
   m_GameObject: {fileID: 5073626852419145486}
   serializedVersion: 2
   m_LocalRotation: {x: -0.12038364, y: 0.7076625, z: 0.69390774, w: 0.05668986}
-  m_LocalPosition: {x: -0.010900893, y: -0.013299651, z: -0.027500005}
+  m_LocalPosition: {x: -0.019, y: -0.004, z: -0.03}
   m_LocalScale: {x: -0.085766256, y: -0.08576626, z: -0.08576626}
   m_ConstrainProportionsScale: 0
   m_Children: []

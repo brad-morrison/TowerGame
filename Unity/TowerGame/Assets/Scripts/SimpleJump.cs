@@ -109,7 +109,7 @@ public class SimpleJump : MonoBehaviour
             // GetComponent<SimpleJump>().enabled = false;
             
             // turn off look at with camera
-            cam.GetComponent<CameraFollow>().enabled = false;
+            //cam.GetComponent<CameraFollow>().enabled = false;
             
             // Pause scene after 2 seconds
             StartCoroutine(PauseAfterDelay(0.5f));
