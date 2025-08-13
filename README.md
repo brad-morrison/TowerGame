@@ -1,5 +1,7 @@
 # Tower Dash
 
+Play here -> `[<Tower Dash>](https://towerdash.netlify.app/)`
+
 A small 3D vertical-tower runner built in **Unity** and shipped as a **WebGL** app via **Netlify**. The front end is a **React + TypeScript + Vite** web app. Game Jam style development cycle (developed over the span of 48 hours).
 
 Programmed, modelled, and animated by **Bradley Morrison**.
@@ -32,8 +34,7 @@ Programmed, modelled, and animated by **Bradley Morrison**.
 
 ## Play / Demo
 
-- **Local dev:** see below  
-- **Production:** `<add your Netlify URL here>`
+- **Live app:** `[<Tower Dash>](https://towerdash.netlify.app/)`
 
 ---
 
