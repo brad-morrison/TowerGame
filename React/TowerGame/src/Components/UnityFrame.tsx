@@ -13,6 +13,6 @@ const Frame = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 700px;
+    height: 100vh;
     aspect-ratio: 9 / 16;
 `;
