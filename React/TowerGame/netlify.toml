@@ -1,0 +1,33 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA deep links
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# If you enabled WebGL Threads/SIMD in Unity, you need these:
+[[headers]]
+  for = "/*"
+  [headers.values]
+  Cross-Origin-Opener-Policy = "same-origin"
+  Cross-Origin-Embedder-Policy = "require-corp"
+
+# Brotli headers (remove if you rely on Unity's Decompression Fallback)
+[[headers]]
+  for = "/unity/Build/*.data.br"
+  [headers.values]
+  Content-Type = "application/octet-stream"
+  Content-Encoding = "br"
+[[headers]]
+  for = "/unity/Build/*.wasm.br"
+  [headers.values]
+  Content-Type = "application/wasm"
+  Content-Encoding = "br"
+[[headers]]
+  for = "/unity/Build/*.js.br"
+  [headers.values]
+  Content-Type = "application/javascript"
+  Content-Encoding = "br"
