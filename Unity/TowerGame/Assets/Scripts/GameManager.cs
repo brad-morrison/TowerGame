@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         gameActive = false;
         //StartCoroutine(PauseAfterDelay(0.1f));
         counterUI.SetWinUI();
-        //player.GetComponent<SimpleJump>().StopRunningSFX();
+        player.GetComponent<SimpleJump>().StopRunningSFX();
         WinUI.SetActive(true);
         //dof.focusDistance.value = 1.6f;
         
@@ -76,8 +76,7 @@ public class GameManager : MonoBehaviour
     {
         uiOpen = true;
         gameActive = false;
-        //StartCoroutine(PauseAfterDelay(0.1f));
-        StopAllMovingElements();
+        StartCoroutine(PauseAfterDelay(0.1f));
         counterUI.SetGameOverUI();
         LoseUI.SetActive(true);
         //dof.focusDistance.value = 1.6f;
@@ -102,7 +101,6 @@ public class GameManager : MonoBehaviour
         player.SetActive(false);
     }
 
-    /*
 IEnumerator PauseAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -110,5 +108,4 @@ IEnumerator PauseAfterDelay(float delay)
         StopAllMovingElements();
         //react.React_GameOverUI(true, gameManager.coins);
     }
-    */
 }

@@ -3,24 +3,17 @@ import styled from 'styled-components';
 import UnityComponent from '../Unity/UnityComponent';
 
 const UnityFrame: React.FC = () => (
-    <Wrapper>
-        <Frame>
-            <UnityComponent />
-        </Frame>
-    </Wrapper>
+    <Frame>
+        <UnityComponent />
+    </Frame>
 );
 
 export default UnityFrame;
 
-const Wrapper = styled.div`
-    padding: 5rem;
+const Frame = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
-`;
-
-const Frame = styled.div`
-    width: 500px;
-    height: 100%;
+    width: 700px;
+    aspect-ratio: 9 / 16;
 `;
