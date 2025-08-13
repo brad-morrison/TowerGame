@@ -1,6 +1,6 @@
 # Tower Dash
 
-A small 3D vertical-tower runner built in **Unity** and shipped as a **WebGL** app via **Netlify**. The front end is a **React + TypeScript + Vite** site that embeds and communicates with the game.
+A small 3D vertical-tower runner built in **Unity** and shipped as a **WebGL** app via **Netlify**. The front end is a **React + TypeScript + Vite** web app. Game Jam style development cycle (developed over the span of 48 hours).
 
 Programmed, modelled, and animated by **Bradley Morrison**.
 
