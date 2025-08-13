@@ -4,6 +4,8 @@ Play here -> https://towerdash.netlify.app
 
 A small 3D vertical-tower runner built in **Unity** and shipped as a **WebGL** app via **Netlify**. The front end is a **React + TypeScript + Vite** web app. Game Jam style development cycle (developed over the span of 48 hours).
 
+* - This was a 48 hour challenge so there may be a few bugs/performance issues!
+
 Programmed, modelled, and animated by **Bradley Morrison**.
 
 > TL;DR 🙂: Run up tower. Dodge the gaps. Collect coins & tokens. Win = collect Gem. Don’t fall. (You will.)
