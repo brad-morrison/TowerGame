@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public int coins;
 
     public GameObject WinUI, LoseUI;
+    public GameObject HelpUI;
 
     public bool uiOpen = false;
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        HelpUI.SetActive(false);
         uiOpen = false;
         /*
         volume.profile.TryGet<DepthOfField>(out dof);

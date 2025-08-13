@@ -23,7 +23,7 @@ public class Notification : MonoBehaviour
         downLocal  = startLocal + Vector3.down * Mathf.Abs(popDownDistance);
 
         // brand stuff unchanged
-        switch (gameManager.activeBrand)
+        switch (PlayerPrefs.GetInt("brand"))
         {
             case 1: tokens[0].SetActive(true); break;
             case 2: tokens[1].SetActive(true); break;

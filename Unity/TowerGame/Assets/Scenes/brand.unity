@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 875052313}
   - component: {fileID: 875052312}
   m_Layer: 0
-  m_Name: sw (2)
+  m_Name: lloyds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 1659544895}
   - component: {fileID: 1659544894}
   m_Layer: 0
-  m_Name: sw (3)
+  m_Name: bos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

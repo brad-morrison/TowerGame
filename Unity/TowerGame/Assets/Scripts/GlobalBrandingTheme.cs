@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class GlobalBrandingTheme : MonoBehaviour
 {
-    public int activeBrand = 1;
+    int activeBrand = 1;
     public GameManager gameManager;
 
-    private void Awake()
+    private void Start()
     {
+        Debug.Log("active brand = "  + PlayerPrefs.GetInt("brand"));
         gameManager = FindObjectOfType<GameManager>();
         InitialBrandSetting();
     }
@@ -26,7 +27,5 @@ public class GlobalBrandingTheme : MonoBehaviour
             SetBrandChoice(1);
         else
             SetBrandChoice(pref);
-        
-        //SetBrandChoice(2);
     }
 }

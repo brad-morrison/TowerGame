@@ -4,6 +4,7 @@ using UnityEngine;
 public class Tokens : MonoBehaviour
 {
     public GameManager gameManager;
+    private int activeBrand;
     public GameObject[] tokens_bos;
     public GameObject[] tokens_sw;
     public GameObject[] tokens_lloyds;
@@ -15,12 +16,13 @@ public class Tokens : MonoBehaviour
 
     private void Start()
     {
+        activeBrand = PlayerPrefs.GetInt("brand");
         ActivateBrand();
     }
 
     public void ActivateBrand()
     {
-        switch (gameManager.activeBrand)
+        switch (activeBrand)
         {
             case 1: ActivateBrand_bos();
                 break;

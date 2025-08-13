@@ -8,7 +8,7 @@ public class BannerBranding : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        switch (gameManager.activeBrand)
+        switch (PlayerPrefs.GetInt("brand"))
         {
             case 1:
                 flag_bos.SetActive(true);
