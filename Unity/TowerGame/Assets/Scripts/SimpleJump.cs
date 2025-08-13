@@ -116,7 +116,7 @@ public class SimpleJump : MonoBehaviour
             
             
             // fire react game over UI
-            react.React_GameOverUI(true, gameManager.coins);
+            //react.React_GameOverUI(true, gameManager.coins);
             
             // set tower rotation to 0
             tower.GetComponent<TowerController>().rotationSpeed = 0;

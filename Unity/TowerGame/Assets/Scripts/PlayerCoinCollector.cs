@@ -4,9 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerCoinCollector : MonoBehaviour
 {
-    [Header("Scoring")]
+    [Header("Refs")]
     public GameManager gameManager;
-    public UnityReact react;
+    public UnityReact react; // beware: likely calls into JS
 
     [Header("Audio")]
     public AudioClip pickupSfx;
@@ -20,6 +20,9 @@ public class PlayerCoinCollector : MonoBehaviour
     [Header("Debug")]
     public bool logContacts = true;
 
+    // one-shot guards
+    private bool _levelEnding = false;
+
     void Reset()
     {
         var rb = GetComponent<Rigidbody>();
@@ -27,53 +30,134 @@ public class PlayerCoinCollector : MonoBehaviour
         rb.useGravity = false;
 
         var col = GetComponent<Collider>();
-        col.isTrigger = false; // Player is solid, pickups are triggers
+        col.isTrigger = false; // player solid; pickups must be triggers
     }
 
     void OnTriggerEnter(Collider other)
     {
-        string lowerName = other.name.ToLower();
+        if (!other) return;
 
-        // --- CRYSTAL ---
-        if (lowerName.Contains("crystal"))
+        // Cheap filter: only react to triggers
+        if (!other.isTrigger) return;
+
+        // Stop duplicates ASAP
+        var otherCol = other;
+        if (otherCol) otherCol.enabled = false;
+
+        // Route by tag (set these on your pickup prefabs)
+        if (other.CompareTag("Crystal"))
         {
-            if (crystalSfx) AudioManager.Instance.PlaySfx(crystalSfx);
+            if (_levelEnding) return;
+            _levelEnding = true;
 
-            if (destroyCrystalOnPickup) Destroy(other.gameObject);
-            else other.gameObject.SetActive(false);
+            // SFX
+            if (crystalSfx) AudioManager.Instance?.PlaySfxWithVolume(crystalSfx, sfxVolume);
 
-            if (react) react.React_GameWonUI(true, gameManager.coins);
+            // Hide visuals immediately; destroy later
+            HideRenderers(other.gameObject);
 
             if (logContacts) Debug.Log("[Player] CRYSTAL collected — level complete!", this);
-            
-            gameManager.GameWin();
+
+            // Defer heavy stuff one frame to avoid use-after-destroy/physics reentry
+            StartCoroutine(HandleLevelWinDeferred(other.gameObject));
             return;
         }
 
-        // --- COIN ---
-        if (lowerName.Contains("coin"))
+        if (other.CompareTag("Coin"))
         {
+            // Guard GM/UI
+            if (gameManager != null)
+            {
+                gameManager.coinCount++;
+                if (gameManager.counterUI != null)
+                    gameManager.counterUI.CoinCounterUpdate(gameManager.coinCount);
+            }
 
-            gameManager.coinCount++;
-            gameManager.counterUI.CoinCounterUpdate(gameManager.coinCount);
-            if (pickupSfx) AudioManager.Instance.PlaySfx(pickupSfx);
-            Destroy(other.gameObject);
-            
-            //gameManager.counterUI.CoinCounterUpdate(coinScore);
+            if (pickupSfx) AudioManager.Instance?.PlaySfxWithVolume(pickupSfx, sfxVolume);
+
+            HideRenderers(other.gameObject);
+            StartCoroutine(DestroyEndOfFrame(other.gameObject));
+            return;
         }
-        
-        // --- TOKEN ---
-        if (lowerName.Contains("token"))
+
+        if (other.CompareTag("Token"))
         {
+            if (gameManager != null)
+            {
+                gameManager.tokenCount++;
+                // Notify UI if assigned
+                if (gameManager.Notification != null)
+                    gameManager.Notification.PopNotification();
+            }
 
-            gameManager.tokenCount++;
-            //gameManager.counterUI.CoinCounterUpdate(gameManager.coinCount);
-            // fire notification
-            gameManager.Notification.PopNotification();
-            if (tokenSfx) AudioManager.Instance.PlaySfx(tokenSfx);
-            Destroy(other.gameObject);
-            
-            //gameManager.counterUI.CoinCounterUpdate(coinScore);
+            if (tokenSfx) AudioManager.Instance?.PlaySfxWithVolume(tokenSfx, sfxVolume);
+
+            HideRenderers(other.gameObject);
+            StartCoroutine(DestroyEndOfFrame(other.gameObject));
+            return;
         }
+
+        // If it wasn't one of our pickups, re-enable the collider we disabled
+        if (otherCol) otherCol.enabled = true;
+    }
+
+    private System.Collections.IEnumerator HandleLevelWinDeferred(GameObject crystal)
+    {
+        // Minor delay lets physics settle and avoids calling into UI/JS during trigger dispatch
+        yield return null;
+
+        if (destroyCrystalOnPickup)
+        {
+            if (crystal) Destroy(crystal);
+        }
+        else
+        {
+            if (crystal) crystal.SetActive(false);
+        }
+
+        // React bridge (guarded + try/catch)
+#if UNITY_WEBGL && !UNITY_EDITOR
+        try
+        {
+            if (react && gameManager != null)
+            {
+                react.React_GameWonUI(true, gameManager.coins);
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogWarning($"React bridge failed (ignored): {ex}");
+        }
+#endif
+
+        // End level (make sure GameWin is idempotent)
+        if (gameManager != null)
+        {
+            try { gameManager.GameWin(); }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"GameWin threw: {ex}");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("GameManager not assigned on PlayerCoinCollector.");
+        }
+    }
+
+    private static System.Collections.IEnumerator DestroyEndOfFrame(GameObject go)
+    {
+        yield return null;
+        if (go) Destroy(go);
+    }
+
+    private static void HideRenderers(GameObject go)
+    {
+        if (!go) return;
+        var mrs = go.GetComponentsInChildren<MeshRenderer>(true);
+        foreach (var mr in mrs) mr.enabled = false;
+        var srs = go.GetComponentsInChildren<SpriteRenderer>(true);
+        foreach (var sr in srs) sr.enabled = false;
+        // Optional: also mute particle systems here
     }
 }
