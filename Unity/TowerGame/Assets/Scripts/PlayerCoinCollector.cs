@@ -4,28 +4,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerCoinCollector : MonoBehaviour
 {
-    [Header("Scoring")]
-    public int coinScore = 0;
+    [Header("Refs")]
     public GameManager gameManager;
-    public UnityReact react;
+    public UnityReact react; // beware: likely calls into JS
 
     [Header("Audio")]
     public AudioClip pickupSfx;
     public AudioClip crystalSfx;
+    public AudioClip tokenSfx;
     [Range(0f, 1f)] public float sfxVolume = 0.8f;
 
-    [Header("Detection (use any)")]
-    public bool useTagCheck = true;
-    public string coinTag = "Coin";
-    public bool useLayerCheck = false;
-    public LayerMask coinLayers;
-
     [Header("Crystal (win)")]
-    public string crystalTag = "Crystal";
-    public bool destroyCrystalOnPickup = true; // else we just disable it
+    public bool destroyCrystalOnPickup = true;
 
     [Header("Debug")]
     public bool logContacts = true;
+
+    // one-shot guards
+    private bool _levelEnding = false;
 
     void Reset()
     {
@@ -33,62 +29,135 @@ public class PlayerCoinCollector : MonoBehaviour
         rb.isKinematic = true;
         rb.useGravity = false;
 
-        // Player collider should be non-trigger; pickups should be triggers.
         var col = GetComponent<Collider>();
-        col.isTrigger = false;
+        col.isTrigger = false; // player solid; pickups must be triggers
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (logContacts)
-            Debug.Log($"[Player] Trigger with {other.name} (tag='{other.tag}', layer={LayerMask.LayerToName(other.gameObject.layer)})", this);
+        if (!other) return;
 
-        // --- CRYSTAL: level complete ---
-        if (IsCrystal(other))
+        // Cheap filter: only react to triggers
+        if (!other.isTrigger) return;
+
+        // Stop duplicates ASAP
+        var otherCol = other;
+        if (otherCol) otherCol.enabled = false;
+
+        // Route by tag (set these on your pickup prefabs)
+        if (other.CompareTag("Crystal"))
         {
-            if (crystalSfx) AudioManager.Instance.PlaySfx(crystalSfx);
+            if (_levelEnding) return;
+            _levelEnding = true;
 
-            if (destroyCrystalOnPickup) Destroy(other.gameObject);
-            else other.gameObject.SetActive(false);
+            // SFX
+            if (crystalSfx) AudioManager.Instance?.PlaySfxWithVolume(crystalSfx, sfxVolume);
 
-            // Tell your GM you won (rename to your actual method)
-            react.React_GameWonUI(true, gameManager.coins);
+            // Hide visuals immediately; destroy later
+            HideRenderers(other.gameObject);
 
             if (logContacts) Debug.Log("[Player] CRYSTAL collected — level complete!", this);
-            return; // stop here; no coin logic this frame
+
+            // Defer heavy stuff one frame to avoid use-after-destroy/physics reentry
+            StartCoroutine(HandleLevelWinDeferred(other.gameObject));
+            return;
         }
 
-        // --- COIN: normal pickup ---
-        if (!IsCoin(other)) return;
+        if (other.CompareTag("Coin"))
+        {
+            // Guard GM/UI
+            if (gameManager != null)
+            {
+                gameManager.coinCount++;
+                if (gameManager.counterUI != null)
+                    gameManager.counterUI.CoinCounterUpdate(gameManager.coinCount);
+            }
 
-        coinScore++;
-        // if you track coins in GM, do it here:
-        // if (gameManager) gameManager.SetCoins(coinScore);
+            if (pickupSfx) AudioManager.Instance?.PlaySfxWithVolume(pickupSfx, sfxVolume);
 
-        if (pickupSfx) AudioManager.Instance.PlaySfx(pickupSfx);
-        Destroy(other.gameObject);
+            HideRenderers(other.gameObject);
+            StartCoroutine(DestroyEndOfFrame(other.gameObject));
+            return;
+        }
 
-        if (logContacts) Debug.Log($"[Player] Collected coin. Total = {coinScore}", this);
+        if (other.CompareTag("Token"))
+        {
+            if (gameManager != null)
+            {
+                gameManager.tokenCount++;
+                // Notify UI if assigned
+                if (gameManager.Notification != null)
+                    gameManager.Notification.PopNotification();
+            }
+
+            if (tokenSfx) AudioManager.Instance?.PlaySfxWithVolume(tokenSfx, sfxVolume);
+
+            HideRenderers(other.gameObject);
+            StartCoroutine(DestroyEndOfFrame(other.gameObject));
+            return;
+        }
+
+        // If it wasn't one of our pickups, re-enable the collider we disabled
+        if (otherCol) otherCol.enabled = true;
     }
 
-    bool IsCoin(Collider other)
+    private System.Collections.IEnumerator HandleLevelWinDeferred(GameObject crystal)
     {
-        bool tagOk   = !useTagCheck   || other.CompareTag(coinTag);
-        bool layerOk = !useLayerCheck || ((coinLayers.value & (1 << other.gameObject.layer)) != 0);
+        // Minor delay lets physics settle and avoids calling into UI/JS during trigger dispatch
+        yield return null;
 
-        if (useTagCheck && useLayerCheck) return tagOk && layerOk;
-        if (useTagCheck)   return tagOk;
-        if (useLayerCheck) return layerOk;
+        if (destroyCrystalOnPickup)
+        {
+            if (crystal) Destroy(crystal);
+        }
+        else
+        {
+            if (crystal) crystal.SetActive(false);
+        }
 
-        return other.name.ToLower().Contains("coin");
+        // React bridge (guarded + try/catch)
+#if UNITY_WEBGL && !UNITY_EDITOR
+        try
+        {
+            if (react && gameManager != null)
+            {
+                react.React_GameWonUI(true, gameManager.coins);
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogWarning($"React bridge failed (ignored): {ex}");
+        }
+#endif
+
+        // End level (make sure GameWin is idempotent)
+        if (gameManager != null)
+        {
+            try { gameManager.GameWin(); }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"GameWin threw: {ex}");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("GameManager not assigned on PlayerCoinCollector.");
+        }
     }
 
-    bool IsCrystal(Collider other)
+    private static System.Collections.IEnumerator DestroyEndOfFrame(GameObject go)
     {
-        // simplest: tag the crystal "Crystal"
-        if (!string.IsNullOrEmpty(crystalTag) && other.CompareTag(crystalTag)) return true;
+        yield return null;
+        if (go) Destroy(go);
+    }
 
-        // fallback: name contains "crystal"
-        return other.name.ToLower().Contains("crystal");
+    private static void HideRenderers(GameObject go)
+    {
+        if (!go) return;
+        var mrs = go.GetComponentsInChildren<MeshRenderer>(true);
+        foreach (var mr in mrs) mr.enabled = false;
+        var srs = go.GetComponentsInChildren<SpriteRenderer>(true);
+        foreach (var sr in srs) sr.enabled = false;
+        // Optional: also mute particle systems here
     }
 }

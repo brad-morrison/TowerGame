@@ -41,9 +41,11 @@ public class SimpleJump : MonoBehaviour
 
     void Update()
     {
+        
         HandleInput();
         HandleJump();
-        HandleDeath();
+        if (gameManager.gameActive)
+            HandleDeath();
         
         if (isDead)
         {
@@ -72,7 +74,7 @@ public class SimpleJump : MonoBehaviour
             }
         }
         
-        if (Input.GetMouseButtonDown(0) && !gameManager.gameActive)
+        if (Input.GetMouseButtonDown(0) && !gameManager.gameActive && !gameManager.uiOpen)
         {
             gameManager.StartGame();
             AudioManager.Instance.ActivateSoundSource(audioSource_Running);
@@ -97,6 +99,8 @@ public class SimpleJump : MonoBehaviour
 
             // Play death SFX
             // AudioManager.Instance.PlaySfx(deathClip);
+            
+            
 
             // Trigger death animation
             animator.SetTrigger("death");
@@ -112,7 +116,7 @@ public class SimpleJump : MonoBehaviour
             
             
             // fire react game over UI
-            react.React_GameOverUI(true, gameManager.coins);
+            //react.React_GameOverUI(true, gameManager.coins);
             
             // set tower rotation to 0
             tower.GetComponent<TowerController>().rotationSpeed = 0;
@@ -147,6 +151,11 @@ public class SimpleJump : MonoBehaviour
         {
             animator.SetTrigger("DoubleJump");
         }
+    }
+
+    public void StopRunningSFX()
+    {
+        AudioManager.Instance.StopSfx(audioSource_Running);
     }
 
     void HandleJump()
@@ -191,8 +200,7 @@ public class SimpleJump : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         print("PAUSED");
-        Time.timeScale = 0f; // Pause the game
-        react.React_GameOverUI(true, gameManager.coins);
+        gameManager.GameOver();
     }
 }
 

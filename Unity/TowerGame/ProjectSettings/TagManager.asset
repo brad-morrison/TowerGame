@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Coin
+  - Crystal
+  - Token
+  - crystal
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - UI
   - ramps
   - crystal
-  - 
+  - token
   - 
   - 
   - 
