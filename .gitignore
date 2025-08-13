@@ -33,6 +33,10 @@ web/dist/
 web/.next/
 web/out/
 web/coverage/
+# allow the React-hosted Unity build
+!web/public/build/
+!web/public/build/**
+
 npm-debug.log*
 yarn-*.log*
 pnpm-debug.log*
