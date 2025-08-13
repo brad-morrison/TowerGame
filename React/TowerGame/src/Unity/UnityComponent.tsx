@@ -1,12 +1,8 @@
 // UnityComponent.tsx
-import React, { useRef, useEffect, useState } from "react";
-import ReactLayerUI from "./ReactLayerUI";
-import { styled } from "styled-components";
+import { useRef, useEffect } from "react";
 
 export default function UnityComponent() {
   const unityRef = useRef<HTMLDivElement>(null);
-  const [coins, setCoins] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     if (!unityRef.current) return;
@@ -42,27 +38,6 @@ export default function UnityComponent() {
     };
 
     document.body.appendChild(script);
-
-    // Unity → React bridge functions
-    (window as any).IncrementReactCounter = () => {
-      setCoins((prev) => prev + 1);
-    };
-
-    (window as any).GameOver_Show = () => {
-      setGameOver(true);
-    };
-
-    (window as any).GameOver_Hide = () => {
-      setGameOver(false);
-    };
-
-    (window as any).GameWon_Show = () => {
-      setGameOver(true);
-    };
-
-    (window as any).GameWon_Hide = () => {
-      setGameOver(false);
-    };
 
     
   }, []);
