@@ -16,13 +16,13 @@ export default function UnityComponent() {
 
     // Load Unity WebGL build
     const script = document.createElement("script");
-    script.src = "/Build/Build.loader.js";
+    script.src = "/build/Build.loader.js";
     script.onload = () => {
       (window as any)
         .createUnityInstance(canvas, {
-          dataUrl: "/Build/Build.data.br",
-          frameworkUrl: "/Build/Build.framework.js.br",
-          codeUrl: "/Build/Build.wasm.br",
+          dataUrl: "/build/Build.data.br",
+          frameworkUrl: "/build/Build.framework.js.br",
+          codeUrl: "/build/Build.wasm.br",
           streamingAssetsUrl: "/StreamingAssets",
           companyName: "YourCompany",
           productName: "YourGame",
