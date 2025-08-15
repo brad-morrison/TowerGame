@@ -11,7 +11,6 @@ public class MoveDownY : MonoBehaviour
 
     void Update()
     {
-        // Move down in world space
         transform.Translate(Vector3.down * speed * Time.deltaTime, Space.World);
 
         if (useMinY && transform.position.y < minY)
@@ -19,7 +18,7 @@ public class MoveDownY : MonoBehaviour
             var p = transform.position;
             p.y = minY;
             transform.position = p;
-            enabled = false; // hit floor, stop moving
+            enabled = false;
         }
     }
 }

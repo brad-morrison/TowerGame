@@ -26,7 +26,6 @@ public class OrbitAroundTarget : MonoBehaviour
     {
         if (!target) return;
 
-        // Use world axis as-is, or convert from target's local space to world.
         Vector3 worldAxis = axisSpace == AxisSpace.World ? axis : target.TransformDirection(axis);
 
         transform.RotateAround(target.position, worldAxis, speed * Time.deltaTime);

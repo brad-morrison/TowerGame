@@ -11,7 +11,6 @@ public class ScalePop : MonoBehaviour
 
     Coroutine popRoutine;
 
-    // Call this from code or hook it to a UI Button OnClick
     public void Pop()
     {
         if (popRoutine != null) StopCoroutine(popRoutine);
@@ -27,19 +26,17 @@ public class ScalePop : MonoBehaviour
         while (t < popTime)
         {
             float a = t / popTime;
-            // Sine 0→1→0 curve: hits peak in the middle, returns to start
             float k = Mathf.Sin(a * Mathf.PI);
             transform.localScale = Vector3.LerpUnclamped(start, peak, k);
 
-            t += Time.unscaledDeltaTime; // ignores timescale so it always pops nicely
+            t += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        transform.localScale = start; // snap back just in case
+        transform.localScale = start;
         popRoutine = null;
     }
 
-    // Optional: call with a custom percent from code
     public void PopPercent(float percent)
     {
         popPercent = percent;

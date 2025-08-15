@@ -8,7 +8,6 @@ public class GlobalBrandingTheme : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("active brand = "  + PlayerPrefs.GetInt("brand"));
         gameManager = FindObjectOfType<GameManager>();
         InitialBrandSetting();
     }

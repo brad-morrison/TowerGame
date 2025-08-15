@@ -36,7 +36,6 @@ public class SpiralRampBuilder : MonoBehaviour
     [Header("Gameplay Balancing")]
     public int initialSafeChunks = 5;  // Number of chunks without any jumps
 
-    // --- Coins (assign a SimpleCoinSpawner in the Inspector) ---
     public SimpleCoinSpawner coinSpawner;
 
     private float currentHeight = 0f;
@@ -67,7 +66,7 @@ public class SpiralRampBuilder : MonoBehaviour
 
     public void GenerateInitialRamp()
     {
-        currentHeight = player.position.y - 0.55f; // Align top of first plank to player feet
+        currentHeight = player.position.y - 0.55f;
         currentAngle = 0f;
         totalChunksSpawned = 0;
 
@@ -122,7 +121,6 @@ public class SpiralRampBuilder : MonoBehaviour
             float centerH = gapStartH + segmentHeight * gapSize * 0.5f;
             float centerA = gapStartA + anglePerSegment * gapSize * 0.5f;
 
-            // --- Coin over the gap center (optional chance handled by spawner) ---
             if (coinSpawner)
             {
                 Vector3 centerPos = new Vector3(0f, centerH, 0f);

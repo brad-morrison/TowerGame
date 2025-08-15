@@ -14,7 +14,6 @@ public class GapDetector : MonoBehaviour
 
     void Update()
     {
-        // Raycast down from player to see if a ramp is beneath
         Ray ray = new Ray(transform.parent.position, Vector3.down);
         if (Physics.Raycast(ray, out RaycastHit hit, checkDistance, rampLayer))
         {

@@ -3,7 +3,9 @@ import UnityComponent from '../Unity/UnityComponent';
 
 const UnityFrame: React.FC = () => (
     <Frame>
-        <UnityComponent />
+        <Wrap>
+            <UnityComponent />
+        </Wrap>
     </Frame>
 );
 
@@ -15,4 +17,8 @@ const Frame = styled.div`
     align-items: center;
     height: 100vh;
     aspect-ratio: 9 / 16;
+`;
+
+const Wrap = styled.div`
+    padding: 1rem;
 `;

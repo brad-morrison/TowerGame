@@ -5,7 +5,6 @@ public class BannerBranding : MonoBehaviour
     public GameManager gameManager;
     public GameObject flag_bos, flag_sw, flag_lloyds;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         switch (PlayerPrefs.GetInt("brand"))
@@ -23,11 +22,5 @@ public class BannerBranding : MonoBehaviour
                 flag_bos.SetActive(true);
                 break;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

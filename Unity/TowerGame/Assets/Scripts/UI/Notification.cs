@@ -7,7 +7,7 @@ public class Notification : MonoBehaviour
     public GameObject[] tokens;
 
     [Header("Movement Settings")]
-    public float popDownDistance = 0.1f;   // positive number; we move DOWN by this much
+    public float popDownDistance = 0.1f;
     public float moveDuration = 0.2f;
     public float visibleTime = 3f;
 
@@ -17,12 +17,9 @@ public class Notification : MonoBehaviour
 
     void Start()
     {
-        // 1) Use LOCAL, not world
         startLocal = transform.localPosition;
-        // 2) Down is -Y
         downLocal  = startLocal + Vector3.down * Mathf.Abs(popDownDistance);
 
-        // brand stuff unchanged
         switch (PlayerPrefs.GetInt("brand"))
         {
             case 1: tokens[0].SetActive(true); break;

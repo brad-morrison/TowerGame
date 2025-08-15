@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class Preload : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         int pref = PlayerPrefs.GetInt("brand");
@@ -11,11 +10,5 @@ public class Preload : MonoBehaviour
             PlayerPrefs.SetInt("brand", 1);
         
         SceneManager.LoadScene("brand");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

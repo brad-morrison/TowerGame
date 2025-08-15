@@ -14,7 +14,7 @@ public class TowerController : MonoBehaviour
     [Tooltip("How fast the tower rotates in degrees/second")]
     public float rotationSpeed = 90f;
 
-    private float scrollSpeed => GetScrollSpeed(); // Always up-to-date
+    private float scrollSpeed => GetScrollSpeed();
 
     void Update()
     {

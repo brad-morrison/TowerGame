@@ -35,7 +35,6 @@ public class ButtonBrandColour : MonoBehaviour
 
     public void SetAll()
     {
-        // for all go in elemnets array
         foreach (GameObject e in elements)
         {
             e.GetComponent<Renderer>().material = activeBrandColour;

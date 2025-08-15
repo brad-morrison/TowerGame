@@ -46,31 +46,21 @@ public class GameManager : MonoBehaviour
     {
         HelpUI.SetActive(false);
         uiOpen = false;
-        /*
-        volume.profile.TryGet<DepthOfField>(out dof);
-        if (SceneManager.GetActiveScene().name == "home")   // exact case
-            dof.focusDistance.value = 4.11f;
-        else
-            dof.focusDistance.value = 3.0f;
-        */
-
         gameActive = true;
 
         // fire player animation event
         player.GetComponent<Animator>().SetTrigger("GameStart");
 
-        // start rotation
+        
     }
 
     public void GameWin()
     {
         uiOpen = true;
         gameActive = false;
-        //StartCoroutine(PauseAfterDelay(0.1f));
         counterUI.SetWinUI();
         player.GetComponent<SimpleJump>().StopRunningSFX();
         WinUI.SetActive(true);
-        //dof.focusDistance.value = 1.6f;
         
     }
 
@@ -81,7 +71,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(PauseAfterDelay(0.1f));
         counterUI.SetGameOverUI();
         LoseUI.SetActive(true);
-        //dof.focusDistance.value = 1.6f;
         HideCharacter();
     }
 
@@ -108,6 +97,5 @@ IEnumerator PauseAfterDelay(float delay)
         yield return new WaitForSeconds(delay);
         print("PAUSED");
         StopAllMovingElements();
-        //react.React_GameOverUI(true, gameManager.coins);
     }
 }

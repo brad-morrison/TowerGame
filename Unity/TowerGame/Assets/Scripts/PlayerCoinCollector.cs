@@ -21,7 +21,6 @@ public class PlayerCoinCollector : MonoBehaviour
     [Header("Debug")]
     public bool logContacts = true;
 
-    // one-shot guards
     private bool _levelEnding = false;
 
     void Reset()
@@ -31,21 +30,18 @@ public class PlayerCoinCollector : MonoBehaviour
         rb.useGravity = false;
 
         var col = GetComponent<Collider>();
-        col.isTrigger = false; // player solid; pickups must be triggers
+        col.isTrigger = false;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (!other) return;
 
-        // Cheap filter: only react to triggers
         if (!other.isTrigger) return;
 
-        // Stop duplicates ASAP
         var otherCol = other;
         if (otherCol) otherCol.enabled = false;
 
-        // Route by tag (set these on your pickup prefabs)
         if (other.CompareTag("Crystal"))
         {
             if (_levelEnding) return;
@@ -57,9 +53,6 @@ public class PlayerCoinCollector : MonoBehaviour
             // Hide visuals immediately; destroy later
             HideRenderers(other.gameObject);
 
-            if (logContacts) Debug.Log("[Player] CRYSTAL collected — level complete!", this);
-
-            // Defer heavy stuff one frame to avoid use-after-destroy/physics reentry
             StartCoroutine(HandleLevelWinDeferred(other.gameObject));
             return;
         }
@@ -105,7 +98,6 @@ public class PlayerCoinCollector : MonoBehaviour
 
     private System.Collections.IEnumerator HandleLevelWinDeferred(GameObject crystal)
     {
-        // Minor delay lets physics settle and avoids calling into UI/JS during trigger dispatch
         yield return null;
 
         if (destroyCrystalOnPickup)
@@ -118,18 +110,12 @@ public class PlayerCoinCollector : MonoBehaviour
         }
 
 
-        // End level (make sure GameWin is idempotent)
         if (gameManager != null)
         {
             try { gameManager.GameWin(); }
             catch (System.Exception ex)
             {
-                Debug.LogError($"GameWin threw: {ex}");
             }
-        }
-        else
-        {
-            Debug.LogWarning("GameManager not assigned on PlayerCoinCollector.");
         }
     }
 
@@ -146,6 +132,5 @@ public class PlayerCoinCollector : MonoBehaviour
         foreach (var mr in mrs) mr.enabled = false;
         var srs = go.GetComponentsInChildren<SpriteRenderer>(true);
         foreach (var sr in srs) sr.enabled = false;
-        // Optional: also mute particle systems here
     }
 }

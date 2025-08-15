@@ -7,24 +7,15 @@ using UnityEngine;
 public class CameraPanAroundTower : MonoBehaviour
 {
     public GameManager gameManager;
-    [Header("Target / Pivot")]
-    [Tooltip("Center of the pillar/tower. If null, uses world origin.")]
     public Transform towerCenter;
 
-    [Header("Motion")]
-    [Tooltip("Max pan angle each side (degrees).")]
     public float amplitudeDeg = 10f;
-    [Tooltip("Time for a full left->right->left cycle (seconds).")]
     public float periodSeconds = 8f;
-    [Tooltip("Start phase offset (degrees on the sine).")]
     public float phaseDeg = 0f;
 
-    [Header("Mode")]
     public Mode panMode = Mode.YawInPlace;
     public enum Mode { YawInPlace, OrbitAroundCenter }
 
-    [Header("Look")]
-    [Tooltip("Optional: keep looking at this target (e.g., the player or tower center).")]
     public Transform lookTarget;
 
     Quaternion _baseLocalRot; // for YawInPlace
@@ -59,11 +50,10 @@ public class CameraPanAroundTower : MonoBehaviour
 
         _lastAngle = desiredAngle;
 
-        // Optional: keep the camera looking at a target (nice for orbit mode)
         if (lookTarget)
         {
             var pos = lookTarget.position;
-            pos.y = Mathf.Lerp(transform.position.y, pos.y, 0.0f); // keep your current framing; tweak if needed
+            pos.y = Mathf.Lerp(transform.position.y, pos.y, 0.0f);
             transform.LookAt(pos, Vector3.up);
         }
     }

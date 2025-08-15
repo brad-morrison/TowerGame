@@ -4,19 +4,17 @@ using System.Collections;
 
 public class SceneControl : MonoBehaviour
 {
-    [SerializeField] bool loadAsync = false;  // toggle if you want async loads
+    [SerializeField] bool loadAsync = false;
 
     public void LoadSceneByName(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName))
         {
-            Debug.LogWarning("[SceneControl] Scene name is empty.");
             return;
         }
 
         if (!SceneExists(sceneName))
         {
-            Debug.LogError($"[SceneControl] Scene '{sceneName}' is not in Build Settings.");
             return;
         }
 
@@ -42,6 +40,5 @@ public class SceneControl : MonoBehaviour
         while (!op.isDone) yield return null;
     }
 
-    // Optional helper if you want a quit button
     public void QuitApp() => Application.Quit();
 }

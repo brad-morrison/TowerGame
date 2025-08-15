@@ -20,9 +20,6 @@ public class SimpleCoinSpawner : MonoBehaviour
     [Header("High Coin Chance")]
     [Range(0f, 1f)] public float highCoinChance = 0.5f; // % of coins that spawn at jump height
 
-    /// <summary>
-    /// Call this when you spawn a ramp or gap.
-    /// </summary>
     public void TrySpawnCoin(Vector3 segmentWorldPos, float segmentAngleDeg)
     {
         if (!coinPrefab) return;

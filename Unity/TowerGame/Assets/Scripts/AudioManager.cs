@@ -18,26 +18,20 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
 
-        // Keep this between scene loads if you want
-        // DontDestroyOnLoad(gameObject);
-
-        // Make an AudioSource for SFX
         sfxSource = gameObject.AddComponent<AudioSource>();
-        sfxSource.spatialBlend = 0f; // 2D sounds
+        sfxSource.spatialBlend = 0f;
         sfxSource.playOnAwake = false;
     }
 
     public void PlaySfx(AudioClip clip)
     {
         if (!clip) return;
-        Debug.Log("Playing SFX");
         sfxSource.PlayOneShot(clip, sfxVolume);
     }
 
     public void PlaySfxWithVolume(AudioClip clip, float volume)
     {
         if (!clip) return;
-        Debug.Log("Playing SFX");
         sfxSource.PlayOneShot(clip, volume);
     }
 

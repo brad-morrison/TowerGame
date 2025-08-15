@@ -43,7 +43,7 @@ export default function UnityComponent() {
   }, []);
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+    <div style={{ position: "relative", width: "100%", height: "100%"}}>
       <div ref={unityRef} style={{ width: "100%", height: "100%", aspectRatio: "9/16"}} />
     </div>
   );

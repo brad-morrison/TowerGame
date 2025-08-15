@@ -93,35 +93,17 @@ public class SimpleJump : MonoBehaviour
         if (overGap && grounded)
         {
             isDead = true;
-            Debug.Log("DEADDDDDD");
             AudioManager.Instance.PlaySfxWithVolume(deathSfx, 0.3f);
             AudioManager.Instance.PauseSfx(audioSource_Running);
 
-            // Play death SFX
-            // AudioManager.Instance.PlaySfx(deathClip);
-            
-            
-
             // Trigger death animation
             animator.SetTrigger("death");
-
-            // Disable movement script (optional)
-            // GetComponent<SimpleJump>().enabled = false;
-            
-            // turn off look at with camera
-            //cam.GetComponent<CameraFollow>().enabled = false;
             
             // Pause scene after 2 seconds
             StartCoroutine(PauseAfterDelay(0.5f));
             
-            
-            // fire react game over UI
-            //react.React_GameOverUI(true, gameManager.coins);
-            
             // set tower rotation to 0
             tower.GetComponent<TowerController>().rotationSpeed = 0;
-
-            // TODO: Respawn or game over logic here
         }
     }
 
